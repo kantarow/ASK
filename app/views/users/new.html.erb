@@ -1,0 +1,25 @@
+<% provide(:title, "Signup") %>
+<%= render "layouts/error_messages", model: @user %>
+<div class="text-center">
+  <h1>Welcome to ASK!</h1>
+  <p>ASK is service for sharing knowledge</p>
+</div>
+
+<%= form_for(@user) do |f| %>
+  <%= f.label :id_name, "ID" %>
+  <%= f.text_field :id_name, placeholder: "Enter ID", class: "form-control body-input" %>
+
+  <%= f.label :screen_name, "Screen name" %>
+  <%= f.text_field :screen_name, placeholder: "Enter Screen name", class: "form-control body-input" %>
+
+  <%= f.label :email, "Email" %>
+  <%= f.email_field :email, placeholder: "Enter Email address", class: "form-control body-input" %>
+
+  <%= f.label :password, "Password" %>
+  <%= f.password_field :password, placeholder: "Enter Password", class: "form-control body-input" %>
+
+  <%= f.label :password_confirmation, "Password confirmation" %>
+  <%= f.password_field :password_confirmation, placeholder: "Enter Password again", class: "form-control body-input" %>
+
+  <%= f.submit "Sign up", class: "btn btn-outline-primary" %>
+<% end %>

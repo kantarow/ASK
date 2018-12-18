@@ -1,1 +1,15 @@
 @import "bootstrap";
+
+.container h1 {
+  margin-top:  80px;
+  font-size:   3.5em;
+  text-shadow: 0.5px 0.5px 0.3px;
+}
+
+.body-input {
+  margin-bottom: 15px;
+}
+
+.alert-warning {
+  margin-top: 30px;
+}
