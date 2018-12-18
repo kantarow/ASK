@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
   end
 
   it "is invalid with too long name_id" do
-    user = FactoryBot.build(:user){|user| user.id_name = "a" * 50}
+    user = FactoryBot.build(:user){|user| user.id_name = "a" * 51}
     expect(user).to be_invalid
   end
 
@@ -23,7 +23,7 @@ RSpec.describe User, type: :model do
   end
 
   it "is invalid with too long screen_name" do
-    user = FactoryBot.build(:user){|user| user.screen_name = "a" * 50}
+    user = FactoryBot.build(:user){|user| user.screen_name = "a" * 51}
     expect(user).to be_invalid
   end
 
@@ -38,7 +38,7 @@ RSpec.describe User, type: :model do
     expect(user2).to be_invalid
   end
 
-  it "is invalid with invalid format" do
+  it "is invalid with invalid format email" do
     user = FactoryBot.build(:user){|user| user.email = "hogehoge.com"}
     expect(user).to be_invalid
   end
