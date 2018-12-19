@@ -1,0 +1,15 @@
+<% provide(:title, "Login") %>
+<div class="text-center">
+  <h1>Log in</h1>
+  <p>ASK is service for sharing knowledge</p>
+</div>
+
+<%= form_for(:session, url: login_path) do |f| %>
+  <%= f.label :id_name_or_email, "ID or Email" %>
+  <%= f.text_field :id_name_or_email, placeholder: "Enter ID or Email", class: "form-control body-input" %>
+
+  <%= f.label :password, "Password" %>
+  <%= f.password_field :password, placeholder: "Enter Password", class: "form-control body-input" %>
+
+  <%= f.submit "Log in", class: "btn btn-outline-primary" %>
+<% end %>

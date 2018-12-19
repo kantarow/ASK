@@ -13,17 +13,24 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find_by(id_name: params[:id])
   end
 
   def index
+    @user = User.find_by(id_name: params[:id])
+  end
+
+  def edit
+    @user = User.find_by(id_name: params[:id])
   end
 
   def destroy
+    @user = User.find_by(id_name: params[:id])
   end
 
   private
   
     def user_params
-      params.require(:user).permit(:id_name, :screen_name, :email, :password, :password_confirmation)
+      params.require(:users).permit(:id_name, :screen_name, :email, :password, :password_confirmation)
     end
 end

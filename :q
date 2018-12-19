@@ -1,0 +1,36 @@
+require 'rails_helper'
+
+RSpec.describe UsersController, type: :controller do
+
+  describe 'GET #new' do
+    before { get :new, params: {}, session: {} }
+    it 'has a 200 status code' do
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'assigns new @user' do
+      expect(assigns(:user)).to be_a_new User
+    end
+    it 'renders the :new template' do
+      expect(response).to render_template :new
+    end
+  end
+
+  describe 'GET #index' do
+    it 'has a 200 status code'
+    it 'assigns @user'
+    it 'renders the :index template'
+  end
+
+  describe 'GET #show' do
+    it 'has a 200 status code'
+    it 'assigns @user'
+    it 'renders the :show template'
+  end
+
+  describe 'GET #edit' do
+    it 'has 200 status code'
+    it 'assigns @user'
+    it 'renders the :edit template'
+  end
+end
