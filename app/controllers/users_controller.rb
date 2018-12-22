@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include UsersHelper
+  before_action :require_login, only: [:edit, :destroy]
   def new
     @user = User.new
   end
@@ -26,11 +28,21 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find_by(id_name: params[:id])
+    @user.destroy
+    flash[:success] = "Your account deleted"
+    redirect_to root_url
   end
 
   private
   
     def user_params
       params.require(:users).permit(:id_name, :screen_name, :email, :password, :password_confirmation)
+    end
+
+    def require_login
+      unless logged_in?
+        flash[:warning] = "Please Log in"
+        redirect_to login_url
+      end
     end
 end

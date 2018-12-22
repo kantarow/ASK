@@ -5,8 +5,10 @@ class SessionsController < ApplicationController
   def create
     id_name_or_email = session_params[:id_name_or_email]
     user = User.find_by(id_name: id_name_or_email) || User.find_by(email: id_name_or_email)
-    p user
-    if user.authenticate(session_params[:password])
+    if user.nil?
+      flash[:warning] = "User not found"
+      render 'new'
+    elsif user.authenticate(session_params[:password])
       session[:user_id] = user.id_name
       flash.now[:success] = "Log in success"
       redirect_to root_url

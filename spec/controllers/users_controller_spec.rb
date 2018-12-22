@@ -4,7 +4,7 @@ RSpec.describe UsersController, type: :controller do
   let(:user){ create(:user) }
 
   describe 'GET #new' do
-    before { get :new, params: {}, session: {} }
+    before { get :new }
     it 'has a 200 status code' do
       expect(response).to have_http_status(:ok)
     end
@@ -64,6 +64,20 @@ RSpec.describe UsersController, type: :controller do
 
     it 'renders the :edit template' do
       expect(response).to render_template :edit
+    end
+  end
+
+  describe 'Delete #destroy' do
+    before do
+      delete :destroy, params: { id: user.id_name }
+    end
+
+    it 'has 200 status code' do
+      expect(response).to have_http_status(:ok)
+    end
+
+    it 'assigns @user' do
+      expect(assigns(:user)).to eq user
     end
   end
 end

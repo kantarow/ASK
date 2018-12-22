@@ -1,0 +1,6 @@
+<h1>Edit user</h1>
+
+<%= form_for(@user, method: :patch) do |f| %>
+<% end %>
+
+<%= link_to "Delete user", user_path(@user.id_name), method: :delete %>

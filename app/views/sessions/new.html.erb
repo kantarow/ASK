@@ -12,4 +12,7 @@
   <%= f.password_field :password, placeholder: "Enter Password", class: "form-control body-input" %>
 
   <%= f.submit "Log in", class: "btn btn-outline-primary" %>
+  <p>
+    If you don't have an account, <%= link_to "signup from here.", new_user_path %>
+  </p>
 <% end %>
