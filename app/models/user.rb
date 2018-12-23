@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  self.primary_key = :id_name
+  
   has_secure_password
   email_regex = /\A[a-zA-Z0-9_\#!$%&`'*+\-{|}~^\/=?\.]+@[a-zA-Z0-9][a-zA-Z0-9\.-]+\z/
   validates :id_name,     presence: true,

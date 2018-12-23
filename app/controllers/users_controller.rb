@@ -26,6 +26,17 @@ class UsersController < ApplicationController
     @user = User.find_by(id_name: params[:id])
   end
 
+  def update
+    @user = User.find_by(id_name: params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] = "User updated" 
+      redirect_to root_url
+    else
+      flash[:danger] = "Failed to update"
+      render 'edit'
+    end
+  end
+
   def destroy
     @user = User.find_by(id_name: params[:id])
     @user.destroy
@@ -36,7 +47,7 @@ class UsersController < ApplicationController
   private
   
     def user_params
-      params.require(:users).permit(:id_name, :screen_name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:id_name, :screen_name, :email, :password, :password_confirmation)
     end
 
     def require_login

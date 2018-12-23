@@ -1,6 +1,24 @@
 <h1>Edit user</h1>
+<%= render "layouts/error_messages", model: @user %>
 
-<%= form_for(@user, method: :patch) do |f| %>
+<%= form_for(@user, url: user_url(@user)) do |f| %>
+  <%= f.label :id_name, "ID" %>
+  <%= f.text_field :id_name, placeholder: "Enter new ID", class: "form-control body-input" %>
+
+  <%= f.label :screen_name, "Screen name" %>
+  <%= f.text_field :screen_name, placeholder: "Enter new Screen name", class: "form-control body-input" %>
+
+  <%= f.label :email, "Email" %>
+  <%= f.email_field :email, placeholder: "Enter Eail address", class: "form-control body-input" %>
+
+  <%= f.label :password, "Password" %>
+  <%= f.password_field :password, placeholder: "Enter Password", class: "form-control body-input" %>
+
+  <%= f.label :password_confirmation, "Password confirmation" %>
+  <%= f.password_field :password_confirmation, placeholder: "Enter Password again", class: "form-control body-input" %>
+
+
+  <%= f.submit "Update", class: "btn btn-outline-primary" %>
 <% end %>
 
 <%= link_to "Delete user", user_path(@user.id_name), method: :delete %>
