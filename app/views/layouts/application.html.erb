@@ -21,6 +21,8 @@
       <% unless Rails.env.production? %>
         <%= debug params %>
         <%= debug session[:user_id] %>
+        <%= debug cookies[:remember_token] %> 
+        <%= debug cookies.signed[:user_id] %>
       <% end %>
     </div>
   </body>

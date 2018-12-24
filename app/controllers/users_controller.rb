@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  include UsersHelper
+  include SessionsHelper
   before_action :require_login, only: [:edit, :destroy]
   def new
     @user = User.new
