@@ -1,0 +1,11 @@
+<% provide(:title, "Create new item") %>
+<%= render "layouts/error_messages", model: @item %>
+<%= form_for(@item) do |f| %>
+  <%= f.label :title, "Title" %>
+  <%= f.text_field :title, placeholder: "Title for this Item", class: "form-control body-input" %>
+
+  <%= f.label :content, "Content text" %>
+  <%= f.text_field :content, class: "formcontrol body-input" %>
+
+  <%= f.submit "Create new", class: "btn btn-outline-primary" %>
+<% end %>

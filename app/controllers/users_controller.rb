@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include SessionsHelper
-  before_action :require_login, only: [:edit, :destroy]
+  before_action :require_login, only: [:edit, :update,  :destroy]
   def new
     @user = User.new
   end
@@ -15,22 +15,21 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(id_name: params[:id])
+    find_user
   end
 
   def index
-    @user = User.find_by(id_name: params[:id])
   end
 
   def edit
-    @user = User.find_by(id_name: params[:id])
+    find_user
   end
 
   def update
-    @user = User.find_by(id_name: params[:id])
+    find_user
     if @user.update_attributes(user_params)
       flash[:success] = "User updated" 
-      redirect_to root_url
+      redirect_to user_path(@user)
     else
       flash[:danger] = "Failed to update"
       render 'edit'
@@ -38,9 +37,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find_by(id_name: params[:id])
-    @user.destroy
-    flash[:success] = "Your account deleted"
+    find_user
+    if @user.destroy
+      flash[:success] = "Your account deleted"
+    else
+      flash[:danger] = "Failed to delete account"
+    end
     redirect_to root_url
   end
 
@@ -50,10 +52,8 @@ class UsersController < ApplicationController
       params.require(:user).permit(:id_name, :screen_name, :email, :password, :password_confirmation)
     end
 
-    def require_login
-      unless logged_in?
-        flash[:warning] = "Please Log in"
-        redirect_to login_url
-      end
+    def find_user
+      print("nil param") if params[:id].nil?
+      @user = User.find(params[:id])
     end
 end

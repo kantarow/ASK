@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :items
   attr_accessor :remember_token
   self.primary_key = :id_name
   

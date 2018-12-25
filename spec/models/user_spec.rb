@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let!(:user){ build(:user) }
-  let!(:other){ build(:other) }
+  let(:user){ build(:user) }
+  let(:other){ build(:other) }
   it "is invalid without name_id" do
     user.id_name = nil
     expect(user).to be_invalid
@@ -14,9 +14,6 @@ RSpec.describe User, type: :model do
   end
 
   it "is invalid with not unique name_id" do
-    user.update_attributes(id_name: "hoge")
-    other.update_attributes(id_name: "hoge")
-    expect(other).to be_invalid
   end
 
   it "is invalid without screen_name" do

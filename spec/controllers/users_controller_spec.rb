@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  let(:user){ create(:user) }
+  include SessionsHelper
+  let!(:user){ create(:user) }
+  let(:params){{id: user.id}}
 
   describe 'GET #new' do
     before { get :new }
@@ -34,7 +36,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'GET #show' do
     before do
-      get :show, params: { id: user.id_name }
+      get :show, params: params
     end
 
     it 'has a 200 status code' do
@@ -52,7 +54,8 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'GET #edit' do
     before do
-      get :edit, params: { id: user.id_name }
+      log_in user
+      get :edit, params: params
     end
     it 'has 200 status code' do
       expect(response).to have_http_status(:ok)
@@ -69,11 +72,12 @@ RSpec.describe UsersController, type: :controller do
 
   describe 'Delete #destroy' do
     before do
-      delete :destroy, params: { id: user.id_name }
+      log_in user
+      delete :destroy, params: params
     end
 
     it 'has 200 status code' do
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(:found)
     end
 
     it 'assigns @user' do
