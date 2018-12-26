@@ -1,0 +1,8 @@
+<div>
+  <% @items.each do |item| %>
+    <%= link_to item.title, item_path(item) %>
+    <br>
+    <%= item.user.screen_name %>
+    <br>
+  <% end %>
+</div>

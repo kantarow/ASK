@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'new/edit'
   get 'new/update'
   get 'new/destroy'
+  get ':id/items', to: 'users#items'
   root "static_pages#home"
   get    '/signup', to: 'users#new'
   get    '/login',  to: 'sessions#new'

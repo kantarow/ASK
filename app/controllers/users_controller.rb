@@ -46,6 +46,11 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
+  def items
+    find_user
+    @items = @user.items
+  end
+
   private
   
     def user_params
