@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship", dependent: :destroy
+  has_many :followings, through: :following_relationships
+  has_many :follower_relationships, foreign_key: "following_id", class_name: "Relationship", dependent: :destroy
+  has_many :followers, through: :follower_relationships
   has_many :items
   attr_accessor :remember_token
   self.primary_key = :id_name
@@ -19,6 +23,22 @@ class User < ApplicationRecord
 
   validates :password,    presence: true,
                             length: (6..50)
+
+  def following?(other)
+    following_relationships.exists?(following_id: other.id)
+  end
+
+  def followed?(other)
+    follower_relationships.exists?(follower_id: other.id)
+  end
+
+  def follow!(other)
+    self.following_relationships.create!(following: other)
+  end
+
+  def unfollow!(other)
+    following_relationships.find_by(following_id: other.id).destroy
+  end
 
   def remember
     @remember_token = User.generate_token
