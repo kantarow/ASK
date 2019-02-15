@@ -79,6 +79,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
+    commonmarker (0.18.2)
+      ruby-enum (~> 0.5)
     concurrent-ruby (1.1.4)
     crass (1.0.4)
     database_cleaner (1.7.0)
@@ -181,6 +183,8 @@ GEM
       rspec-mocks (~> 3.8.0)
       rspec-support (~> 3.8.0)
     rspec-support (3.8.0)
+    ruby-enum (0.7.2)
+      i18n
     ruby_dep (1.5.0)
     rubyzip (1.2.2)
     sass (3.7.2)
@@ -242,6 +246,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  commonmarker
   database_cleaner
   factory_bot_rails
   jbuilder (~> 2.5)

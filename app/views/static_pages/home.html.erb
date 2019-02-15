@@ -1,1 +1,4 @@
 <h1>Hello</h1>
+<% if logged_in? %>
+  <p>login as <%= current_user.screen_name %></p>
+<% end %>
