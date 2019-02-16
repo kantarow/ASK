@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   include SessionsHelper
+  include  ApplicationHelper
   before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
   def new
     @item = Item.new
@@ -50,7 +51,4 @@ class ItemsController < ApplicationController
       params.require(:item).permit(:title, :content)
     end
 
-    def find_item
-      @item = Item.find(params[:id])
-    end
 end

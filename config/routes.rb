@@ -14,6 +14,6 @@ Rails.application.routes.draw do
   get    '/login',  to: 'sessions#new'
   post   '/login',  to: 'sessions#create'
   get    '/logout', to: 'sessions#destroy'
-  resources :users
-  resources :items
+  resources :users, param: :user_id, path: '/'
+  resources :items, param: :item_id, path: '/:user_id/:item_id'
 end

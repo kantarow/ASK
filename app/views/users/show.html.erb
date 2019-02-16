@@ -1,2 +1,6 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1><%= @user.screen_name %></h1>
+<%= @items.each do |item| %>
+  <%= link_to item.title, "#{@user.id}/#{item.id}" %>
+  <br>
+<% end %>
+<%= will_paginate @items %>

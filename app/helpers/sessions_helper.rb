@@ -24,7 +24,6 @@ module SessionsHelper
   def current_user
     if (user_id = session[:user_id])
       begin
-        @current_user ||= User.find(user_id)
       rescue ActiveRecord::RecordNotFound
         session.delete(:user_id)
         @current_user = nil

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  include ApplicationHelper
   include SessionsHelper
   before_action :require_login, only: [:edit, :update,  :destroy]
   def new
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
 
   def show
     find_user
+    @items = @user.items.paginate(page: params[:page])
   end
 
   def index
@@ -46,19 +48,10 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
-  def items
-    find_user
-    @items = @user.items
-  end
-
   private
   
     def user_params
       params.require(:user).permit(:id_name, :screen_name, :email, :password, :password_confirmation)
     end
 
-    def find_user
-      print("nil param") if params[:id].nil?
-      @user = User.find(params[:id])
-    end
 end
