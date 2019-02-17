@@ -1,12 +1,39 @@
 <%= render "layouts/error_messages", model: @item %>
 <div class="form-group">
-<%= form_for(@item) do |f| %>
-  <%= f.label :title, "Title" %>
-  <%= f.text_field :title, placeholder: "Title for this Item", class: "form-control body-input" %>
+  <%= form_for(@item) do |f| %>
+     <%= f.label :title, "Title" %>
+    <%= f.text_field :title, placeholder: "Title for this Item", class: "form-control body-input" %>
 
-  <%= f.label :content, "Content text" %>
-  <%= f.text_area :content, rows: 20, columns: 30, class: "form-control body-input" %>
+    <div class="row" id="editor">
+      <div class="col-md-6">
+        <%= f.label :content, "Content text" %>
+        <%= f.text_area :content, rows: 20, columns: 20, class: "form-control body-input", "v-model" => "content" %>
+      </div>
 
-  <%= f.submit "Create new", class: "btn btn-outline-primary" %>
-<% end %>
+      <div class="col-md-6">
+        <label>Preview</label>
+        <div v-html="markdownContent">
+        </div>
+      </div>
+    </div>
+
+    <div class="submit-btn">
+      <%= f.submit "Submit", class: "btn btn-outline-primary" %>
+    </div>
+  <% end %>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.6/dist/vue.js"></script>
+<script src="https://unpkg.com/marked@0.3.6"></script>
+  <script>
+    new Vue({
+      el: '#editor',
+      data: {
+        content: document.querySelector("[v-model='content']").value
+      },
+      computed: {
+        markdownContent: function() {
+          return marked(this.content);
+        }
+      }
+    })
+  </script>
