@@ -12,7 +12,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <% if logged_in? %>
-            <%= link_to "Profile", user_path(current_user.id_name), class: "dropdown-item" %>
+            <%= link_to current_user.id_name, user_path(current_user.id_name), class: "dropdown-item" %>
             <%= link_to "Setting", edit_user_path(current_user.id_name), class: "dropdown-item" %>
             <%= link_to "Items", "#", class: "dropdown-item" %>
             <div class="dropdown-divider"></div>

@@ -16,8 +16,9 @@ class UsersController < ApplicationController
   end
 
   def show
-    find_user
-    @items = @user.items.paginate(page: params[:page], per_page: 2)
+    if find_user
+      @items = @user.items.paginate(page: params[:page], per_page: 2)
+    end
   end
 
   def index
