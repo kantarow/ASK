@@ -1,4 +1,12 @@
-<h1>Hello</h1>
-<% if logged_in? %>
-  <p>login as <%= current_user.screen_name %></p>
-<% end %>
+<div class="row">
+  <div class="top-headline-box col-md-12 col-md-offset-3">
+    <div class="top-headline-content">
+      <h1>Welcome to ASK</h1>
+      <% unless logged_in? %>
+        <div class="btn">
+          <%= link_to "Get Started!", login_path, class: "btn btn-outline-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

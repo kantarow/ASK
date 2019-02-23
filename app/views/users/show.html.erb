@@ -1,6 +1,11 @@
 <h1><%= @user.screen_name %></h1>
 <% @items.each do |item| %>
-  <%= link_to item.title, item %>
-  <br>
+  <%= link_to item_path(item) do %>
+    <div class="item-headline">
+      <%= item.title %>
+      <br>
+      <%= "by " + item.user.id_name %>
+    </div>
+  <% end %>
 <% end %>
 <%= will_paginate @items, renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer %>

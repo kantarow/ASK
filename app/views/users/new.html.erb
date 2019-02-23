@@ -1,9 +1,6 @@
 <% provide(:title, "Signup") %>
 <%= render "layouts/error_messages", model: @user %>
-<div class="text-center">
-  <h1>Welcome to ASK!</h1>
-  <p>ASK is service for sharing knowledge</p>
-</div>
+<h1 class="text-center">Welcome to ASK!</h1>
 
 <%= form_for(@user) do |f| %>
   <%= f.label :id_name, "ID" %>

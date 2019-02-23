@@ -1,8 +1,5 @@
 <% provide(:title, "Login") %>
-<div class="text-center">
-  <h1>Log in</h1>
-  <p>ASK is service for sharing knowledge</p>
-</div>
+<h1 class="text-center">Log in</h1>
 
 <%= form_for(:session, url: login_path) do |f| %>
   <%= f.label :id_name_or_email, "ID or Email" %>

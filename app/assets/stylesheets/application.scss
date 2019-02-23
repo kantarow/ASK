@@ -1,13 +1,18 @@
 @import "bootstrap";
 
-.container h1 {
-  margin-top:  30px;
-  font-size:   3.5em;
-  text-shadow: 0.5px 0.5px 0.3px;
+$whitesmoke: #f5f5f5;
+
+.navbar-brand {
+  color: white;
+  font-size: 1.7em;
+  font-weight: bold;
 }
 
 .btn {
-  margin-bottom: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .body-input {
@@ -16,4 +21,40 @@
 
 .alert {
   margin-top: 30px;
+}
+
+.item-headline {
+  margin-top: 15px;
+  background-color: whitesmoke;
+  width: 400px;
+  height: 70px;
+  border-radius: 10px;
+  color: black;
+  text-decoration: none;
+}
+
+.item-headline:hover {
+  text-decoration: none;
+}
+
+.top-headline-box {
+  margin-top: 30px;
+  background-color: #eaeff9;
+  border-radius: 10px;
+}
+
+.top-headline-content {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 30px;
+  font-family: lato;
+  h1 {
+    margin-top: 50px;
+    font-size: 4em;
+    color: #353e4f;
+  }
+  .btn {
+    margin-top: 30px;
+    font-size: 1.2em;
+  }
 }
