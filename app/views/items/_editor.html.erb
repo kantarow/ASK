@@ -12,7 +12,7 @@
 
       <div class="col-md-6">
         <label>Preview</label>
-        <div v-html="markdownContent">
+        <div v-html="preview">
         </div>
       </div>
     </div>
@@ -31,7 +31,7 @@
         content: document.querySelector("[v-model='content']").value
       },
       computed: {
-        markdownContent: function() {
+        preview: function() {
           return marked(this.content);
         }
       }
