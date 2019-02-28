@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #4c8dcb">
+  <%= link_to "ASK", root_url, class: "navbar-brand" %>
+
+  <ul class="navbar-nav">
+    <%= link_to "Home", "#", class: "nav-link" %>
+    <%= link_to "Index", "#", class: "nav-link" %>
+  </ul>
+
+  <ul class="navbar-nav ml-auto">
+    <%= form_with url: "/search", local: true, method: "get" do |f| %>
+      <%= f.text_field :q, class: "inline-form" %>
+      <%= f.submit "Search", class: "btn", style: "color: white;background-color: #417ab1" %>
+    <% end %>
+    <% unless logged_in? %>
+      <%= link_to signup_path, class: "btn btn-warning nav-link", style: "color: black;" do %>
+        <img src="https://img.icons8.com/metro/26/000000/gender-neutral-user.png">Sign up
+      <% end %>
+      <%= link_to login_path, class: "btn btn-warning nav-link", style: "color: black;" do %>
+        <img src="https://img.icons8.com/ios-glyphs/26/000000/enter-2.png">Log in
+      <% end %>
+    <% end %>
+  </ul>
+</nav>

@@ -1,0 +1,10 @@
+<p>
+<% @items.each do |item| %>
+  <%= link_to item.title, item %>
+  <br>
+<% end %>
+<% @users.each do |user| %>
+  <%= link_to user.id_name, user %>
+  <br>
+<% end %>
+</p>

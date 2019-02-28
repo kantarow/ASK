@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get    '/login',  to: 'sessions#new'
   post   '/login',  to: 'sessions#create'
   get    '/logout', to: 'sessions#destroy'
+  get    '/search', to: 'search#search'
   resources :users, param: :user_id
   resources :items, param: :item_id
 end
