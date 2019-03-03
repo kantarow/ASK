@@ -13,19 +13,12 @@
 
   <body>
     <%= render "layouts/header" %>
+    <% flash.each do |key, value| %>
+      <%= content_tag :div, value, class: "alert alert-#{key}" %>
+    <% end %>
+    <%= yield :top %>
     <div class="container">
-      <% flash.each do |key, value| %>
-        <%= content_tag :div, value, class: "alert alert-#{key}" %>
-      <% end %>
       <%= yield %>
-      <!--
-      <% unless Rails.env.production? %>
-        <%= debug params %>
-        <%= debug session[:user_id] %>
-        <%= debug cookies[:remember_token] %> 
-        <%= debug cookies.signed[:user_id] %>
-      <% end %>
-    -->
     </div>
   </body>
 </html>

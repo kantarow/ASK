@@ -1,14 +1,16 @@
 <ul class="topnav">
-  <li><%= link_to "ASK", root_url %></li>
+  <li class="left"><%= link_to "ASK", root_url %></li>
   <% if logged_in? %>
-    <li><%= link_to "MyPage", current_user %></li>
-    <li><%= link_to "New", new_item_path %></li>
-    <li><%= link_to "LogOut", logout_path %></li>
+    <li class="left"><%= link_to "MyPage", current_user %></li>
+    <li class="right"><%= link_to "LogOut", logout_path %></li>
+    <li class="right"><%= link_to "Setting", edit_user_path(current_user) %></li>
+    <li class="right"><%= link_to "NewItem", new_item_path %></li>
+
   <% else %>
-    <li><%= link_to "LogIn", login_path %></li>
+    <li class="right"><%= link_to "LogIn", login_path %></li>
   <% end %>
-  <%= form_with url: "/search", method: "get", local: true, class: "form-inline" do |f| %>
-    <%= f.text_field :q, class: "form-control" %>
-    <%= f.submit :search, class: "btn btn-success" %>
+  <%= form_with url: "/search", method: "get", local: true, class: "search" do |f| %>
+    <%= f.text_field :q, class: "search-form", value: params[:q], autocomplete: 'off', spellcheck: false %>
+    <%= f.submit :search, class: "search-btn" %>
   <% end %>
 </ul>
