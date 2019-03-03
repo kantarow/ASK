@@ -49,9 +49,20 @@ class UsersController < ApplicationController
     redirect_to root_url
   end
 
-  private
-  
-    def user_params
-      params.require(:user).permit(:id_name, :screen_name, :email, :password, :password_confirmation)
+  def follow
+    find_user
+    if current_user.following?(@user)
+      current_user.unfollow!(@user)
+      @message = "Follow".to_json
+    else
+      current_user.follow!(@user)
+      @message = "Unfollow".to_json
     end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:id_name, :screen_name, :email, :password, :password_confirmation)
+  end
 end

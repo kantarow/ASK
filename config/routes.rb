@@ -5,6 +5,12 @@ Rails.application.routes.draw do
   post   '/login',  to: 'sessions#create'
   get    '/logout', to: 'sessions#destroy'
   get    '/search', to: 'search#search'
-  resources :users, param: :user_id
+
+  resources :users, param: :user_id do
+    member do
+      get 'follow'
+    end
+  end
+
   resources :items, param: :item_id
 end

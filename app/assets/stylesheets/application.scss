@@ -158,8 +158,11 @@ h1.title {
   border-radius: 5px;
   font-size: 1.2em;
   color: white;
+  text-align: center;
 
   &:hover {
+    text-decoration: none;
+    color: white;
     background-color: $shadow2-primary;
     border: 1px solid $shadow2-primary;
   }

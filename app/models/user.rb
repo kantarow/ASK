@@ -33,9 +33,11 @@ class User < ApplicationRecord
   end
 
   def follow!(other)
-      self.following_relationships.create!(following: other)
+    begin
+      self.following_relationships.create!(following: other) unless self.following?(other)
     rescue ActiveRecord::RecordInvalid => e
       pp e.record.errors
+    end
   end
 
   def unfollow!(other)
