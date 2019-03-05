@@ -1,4 +1,5 @@
 module SessionsHelper
+  include UsersHelper
   def log_in(user)
     session[:user_id] = user.id
   end
@@ -21,30 +22,20 @@ module SessionsHelper
     cookies.delete(:remember_token)
   end
 
-  def current_user
-    if (user_id = session[:user_id])
-      begin
-        @current_user ||= User.find(user_id)
-      rescue ActiveRecord::RecordNotFound
-        session.delete(:user_id)
-        @current_user = nil
-      end
-    elsif (user_id = cookies.signed[:user_id])
-      begin
-        user = User.find(user_id)
-        if user && user.authenticated?(cookies[:remember_token])
-          log_in user
-          @current_user = user
-        end
-      rescue ActiveRecord::RecordNotFound
-        cookies.delete(:user_id)
-        cookies.delete(:remember_token)
-        @current_user = nil
-      end
-    end
-  end
-
   def logged_in?
     !current_user.nil?
+  end
+
+  def current_user
+    return @current_user if defined? @current_user
+    @current_user = User.find_by(id_name: session[:user_id])
+    if @current_user.nil?
+      user = User.find_by(id: cookies.signed[:user_id])
+      if user && user.authenticated?(cookies[:remember_token])
+        @current_user = User.find_by(id: cookies.signed[:user_id])
+        log_in @current_user
+      end
+    end
+    @current_user
   end
 end

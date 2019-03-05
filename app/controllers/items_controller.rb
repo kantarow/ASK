@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
-  include SessionsHelper
-  include  ApplicationHelper
   before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+  helper_method :item
   def new
     @item = Item.new
   end
@@ -17,16 +16,13 @@ class ItemsController < ApplicationController
   end
 
   def show
-    find_item
   end
 
   def edit
-    find_item
   end
 
   def update
-    find_item
-    if @item.update_attributes(item_params)
+    if item.update_attributes(item_params)
       flash[:success] = "Item updated"
       redirect_to item_path(@item)
     else
@@ -36,8 +32,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    find_item
-    if @item.destroy
+    if item.destroy
       flash[:success] = "Item deleted"
     else
       danger[:danger] = "Failed to delete item"

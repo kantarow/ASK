@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  include ApplicationHelper
-  include SessionsHelper
   before_action :require_login, only: [:edit, :update,  :destroy]
   def new
     @user = User.new
@@ -16,9 +14,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    if (user = find_user)
-      @items = user.items.paginate(page: params[:page], per_page: 5)
-    end
+    @items = user.items.paginate(page: params[:page], per_page: 5)
   end
 
   def index
@@ -48,6 +44,7 @@ class UsersController < ApplicationController
     end
     redirect_to root_url
   end
+
 
   def follow
     find_user

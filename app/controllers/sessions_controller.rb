@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  include SessionsHelper
   def new
   end
 
@@ -11,7 +10,7 @@ class SessionsController < ApplicationController
       log_in @user
       params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
       flash.now[:success] = "Log in success"
-      redirect_to root_url
+      redirect_to @user
     else
       flash.now[:danger] = "Invalid email/id/password combination"
       render 'new'
