@@ -86,7 +86,9 @@ h1.title {
 
 .top-headline-box {
   box-sizing: border-box;
-  width: 100vw;
+  position: absolute;
+  left: 0;
+  right: 0;
   height: 50vh;
   background-color: $headline-primary;
   text-align: center;

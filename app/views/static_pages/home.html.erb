@@ -1,6 +1,16 @@
-<% content_for :top do %>
+<% unless logged_in? %>
   <div class="top-headline-box">
     <h1>Welcome!</h1>
     <%= link_to "Sign up", signup_path, class: "accent-button" %>
+  </div>
+<% else %>
+  <div class="timeline">
+    <div class="following-tag">
+      <% current_user.following_users.each do |following| %>
+        <%= link_to following.id_name, following %>
+      <% end %>
+    </div>
+    <div class="following-user">
+    </div>
   </div>
 <% end %>

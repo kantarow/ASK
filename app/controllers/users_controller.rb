@@ -21,14 +21,12 @@ class UsersController < ApplicationController
   end
 
   def edit
-    find_user
   end
 
   def update
-    find_user
-    if @user.update_attributes(user_params)
+    if user.update_attributes(user_params)
       flash[:success] = "User updated" 
-      redirect_to user_path(@user)
+      redirect_to user
     else
       flash[:danger] = "Failed to update"
       render 'edit'
