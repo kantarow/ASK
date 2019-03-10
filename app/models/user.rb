@@ -4,6 +4,10 @@ class User < ApplicationRecord
   has_many :following_users, through: :following_relationships, source: 'following'
   has_many :follower_relationships, foreign_key: "following_id", class_name: "Relationship", dependent: :destroy
   has_many :followers, through: :follower_relationships
+
+  has_many :like_relationships, dependent: :destroy
+  has_many :like_items, through: :like_relationships, source: :item
+
   has_many :items, dependent: :destroy, primary_key: "id_name"
   attr_accessor :remember_token
   
@@ -21,6 +25,19 @@ class User < ApplicationRecord
                         uniqueness: true,
                             length: { maximum: 50 },
                             format: { with: email_regex }
+
+  def like?(item)
+    like_relationships.exists?(item_id: item.id)
+  end
+
+  def like!(item)
+    like_relationships.create!(item: item) unless self.like?(item)
+  end
+  
+  def unlike!(item)
+    like_relationships.find_by(item_id: item.id).destroy
+  end
+
 
   def following?(other)
     following_relationships.exists?(following_id: other.id)
@@ -67,7 +84,7 @@ class User < ApplicationRecord
 
     def digest(string)
       cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                    BCrypt::Engine.cost
+        BCrypt::Engine.cost
       BCrypt::Password.create(string, cost: cost)
     end
   end
