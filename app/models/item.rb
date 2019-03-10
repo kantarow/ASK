@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, foreign_key: "user_id", foreign_type: "string"
   has_many :item_tag_relationships
   has_many :tags, through: :item_tag_relationships
   validates :title, presence: true, length: (1..100)

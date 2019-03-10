@@ -30,9 +30,9 @@ module SessionsHelper
     return @current_user if defined? @current_user
     @current_user = User.find_by(id_name: session[:user_id])
     if @current_user.nil?
-      user = User.find_by(id: cookies.signed[:user_id])
+      user = User.find_by(id_name: cookies.signed[:user_id])
       if user && user.authenticated?(cookies[:remember_token])
-        @current_user = User.find_by(id: cookies.signed[:user_id])
+        @current_user = User.find_by(id_name: cookies.signed[:user_id])
         log_in @current_user
       end
     end

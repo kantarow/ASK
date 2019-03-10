@@ -1,13 +1,14 @@
 class User < ApplicationRecord
+  self.primary_key = :id_name
   has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship", dependent: :destroy
   has_many :following_users, through: :following_relationships, source: 'following'
   has_many :follower_relationships, foreign_key: "following_id", class_name: "Relationship", dependent: :destroy
   has_many :followers, through: :follower_relationships
-  has_many :items, dependent: :destroy
+  has_many :items, dependent: :destroy, primary_key: "id_name"
   attr_accessor :remember_token
-  self.primary_key = :id_name
   
   has_secure_password
+
   email_regex = /\A[a-zA-Z0-9_\#!$%&`'*+\-{|}~^\/=?\.]+@[a-zA-Z0-9][a-zA-Z0-9\.-]+\z/
   validates :id_name,     presence: true,
                         uniqueness: true,
@@ -20,9 +21,6 @@ class User < ApplicationRecord
                         uniqueness: true,
                             length: { maximum: 50 },
                             format: { with: email_regex }
-
-  validates :password,    presence: true,
-                            length: (6..50)
 
   def following?(other)
     following_relationships.exists?(following_id: other.id)
@@ -59,6 +57,7 @@ class User < ApplicationRecord
   end
 
   def timeline
+    Item.where(id: self.following_users.map{|user| user.items.map(&:id)}).order(created_at: :desc).limit(10)
   end
 
   class << self
