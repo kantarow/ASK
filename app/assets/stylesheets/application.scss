@@ -13,11 +13,8 @@ $accent-tint: #33D375;
 $accent-shade: #05B349;
 
 body {
-  margin: 0;
-  padding: 0;
   font-family: 'Lato';
-  background-color: $light-primary;
-}
+} 
 
 h1.title {
   margin-top: 10px;
@@ -67,11 +64,12 @@ h1.title {
 }
 
 .item-headline {
+  padding-top: 20px;
+  padding-left: 10px;
   border-radius: 3px;
   transition: 0.5s;
   color: black;
   text-decoration: none;
-  padding-top: 20px;
 
   &:hover {
     background-color: $shadow-primary;
@@ -79,6 +77,7 @@ h1.title {
 
   p { font-color: #cccccc; }
 }
+
 
 .item-headline-link {
   &:hover {text-decoration: none;}
@@ -124,7 +123,7 @@ h1.title {
     outline: none;
     border-radius: 10px;
     background-color: $default-primary;
-    border: 1px solid $default-primary;
+     border: 1px solid $default-primary;
     color: white;
 
     &:hover {
@@ -152,7 +151,6 @@ h1.title {
 }
 
 .submit-button {
-  margin: 10px;
   transition: 0.3s;
   padding: 0.3em;
   background-color: $default-primary;
@@ -196,6 +194,7 @@ h1.title {
   border-radius: 10px;
 }
 
-.alert {
-  margin: 0;
+.timeline-headline {
+  font-size: 1.2em;
+  color: #330033
 }

@@ -34,8 +34,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    find_user
-    if @user.destroy
+    if user.destroy
       flash[:success] = "Your account deleted"
     else
       flash[:danger] = "Failed to delete account"
@@ -45,12 +44,11 @@ class UsersController < ApplicationController
 
 
   def follow
-    find_user
-    if current_user.following?(@user)
-      current_user.unfollow!(@user)
+    if current_user.following?(user)
+      current_user.unfollow!(user)
       @message = "Follow".to_json
     else
-      current_user.follow!(@user)
+      current_user.follow!(user)
       @message = "Unfollow".to_json
     end
   end

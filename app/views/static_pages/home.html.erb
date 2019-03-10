@@ -5,9 +5,18 @@
   </div>
 <% else %>
   <div class="timeline">
-    <div class="following-tag">
+    <div class="following-users">
+      <h2 class="timeline-headline">Following User</h2>
       <% current_user.following_users.each do |following| %>
-        <%= link_to following.id_name, following %>
+        <% following.items.each do |item| %>
+          <%= link_to item, class: "item-headline-link" do %>
+            <div class="item-headline">
+              <h5><%= item.title %></h5>
+              <p><%= "by " + following.id_name %></p>
+              <hr>
+            </div>
+          <% end %>
+        <% end %>
       <% end %>
     </div>
     <div class="following-user">
