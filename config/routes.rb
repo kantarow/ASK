@@ -12,5 +12,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :items, param: :item_id
+  resources :items, param: :item_id do
+    member do
+      get 'like'
+    end
+  end
 end

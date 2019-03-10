@@ -41,6 +41,16 @@ class ItemsController < ApplicationController
     redirect_to root_url
   end
 
+  def like
+    if current_user.like?(item)
+      current_user.unlike!(item)
+      @src = "https://img.icons8.com/material-outlined/24/000000/hearts.png".to_json
+    else
+      current_user.like!(item)
+      @src = "https://img.icons8.com/material/24/000000/hearts.png".to_json
+    end
+  end
+
   private
 
     def item_params

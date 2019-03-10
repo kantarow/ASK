@@ -1,3 +1,13 @@
 <%= item.title %><br>
 <%= md2html item.content %><br>
 <%= item.user.screen_name %>
+<br>
+<% if logged_in? %>
+  <%= link_to like_item_path, id: "like-or-unlike", remote: true do %>
+    <% if current_user.like?(item) %>
+      <img src="https://img.icons8.com/material/24/000000/hearts.png">
+    <% else %>
+      <img src="https://img.icons8.com/material-outlined/24/000000/hearts.png">
+    <% end %>
+  <% end %>
+<% end %>
