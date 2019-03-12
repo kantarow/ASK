@@ -4,4 +4,6 @@ class Tag < ApplicationRecord
   validates :name, presence: true, length: (1..30)
   has_many :follower_relationships, dependent: :destroy
   has_many :followers, through: :follower_relationships
+
+  validates :name, uniqueness: true
 end

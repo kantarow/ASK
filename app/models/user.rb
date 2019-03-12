@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :follower_relationships, foreign_key: "following_id", class_name: "Relationship", dependent: :destroy
   has_many :followers, through: :follower_relationships
   has_many :follow_tag_relationships, dependent: :destroy
-  has_many :following_tags, through: :following_tag_relationships
+  has_many :following_tags, through: :follow_tag_relationships, source: :tag
 
   has_many :like_relationships, dependent: :destroy
   has_many :like_items, through: :like_relationships, source: :item
