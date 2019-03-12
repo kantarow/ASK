@@ -4,6 +4,8 @@ class User < ApplicationRecord
   has_many :following_users, through: :following_relationships, source: 'following'
   has_many :follower_relationships, foreign_key: "following_id", class_name: "Relationship", dependent: :destroy
   has_many :followers, through: :follower_relationships
+  has_many :follow_tag_relationships, dependent: :destroy
+  has_many :following_tags, through: :following_tag_relationships
 
   has_many :like_relationships, dependent: :destroy
   has_many :like_items, through: :like_relationships, source: :item
@@ -25,6 +27,7 @@ class User < ApplicationRecord
                         uniqueness: true,
                             length: { maximum: 50 },
                             format: { with: email_regex }
+
 
   def like?(item)
     like_relationships.exists?(item_id: item.id)
@@ -48,15 +51,23 @@ class User < ApplicationRecord
   end
 
   def follow!(other)
-    begin
       self.following_relationships.create!(following: other) unless self.following?(other)
-    rescue ActiveRecord::RecordInvalid => e
-      pp e.record.errors
-    end
   end
 
   def unfollow!(other)
     following_relationships.find_by(following_id: other.id).destroy
+  end
+
+  def follow_tag(tag)
+    follow_tag_relationships.create!(tag: tag) unless self.following_tag?(tag)
+  end
+
+  def unfollow_tag(tag)
+    follow_tag_relationships.find_by(tag_id: tag.id).destroy
+  end
+
+  def following_tag?(tag)
+    follow_tag_relationships.exists?(tag_id: tag.id)
   end
 
   def remember
