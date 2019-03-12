@@ -1,0 +1,14 @@
+<h1>Users</h1>
+<div id="following-users" class="active">
+  <% current_user.following_users.each do |following| %>
+    <% following.items.each do |item| %>
+      <%= link_to item, class: "item-headline-link" do %>
+        <div class="item-headline">
+          <h5><%= item.title %></h5>
+          <p><%= "by " + following.id_name %></p>
+          <hr>
+        </div>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

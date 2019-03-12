@@ -13,16 +13,17 @@ $accent-tint: #33D375;
 $accent-shade: #05B349;
 
 body {
-  font-family: 'Lato';
+  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Hiragino Kaku Gothic ProN,"メイリオ",meiryo,sans-serif;
+  line-height: 2em;
+  background-color: white;
 } 
+
+.container {
+}
 
 h1.title {
   margin-top: 10px;
   margin-bottom: 50px;
-}
-
-.alert {
-  margin-top: 30px;
 }
 
 .topnav {
@@ -34,7 +35,7 @@ h1.title {
 }
 
 .topnav li {
-  margin-top: 9px;
+  font-family: 'Lato';
 }
 
 .topnav li.right {
@@ -46,11 +47,12 @@ h1.title {
 }
 
 .topnav li a {
+  display: block;
   transition: 0.3s;
   font-size: 1.3em;
   color: white;
-  text-align: center;
   padding: 14px 16px;
+  text-align: center;
   text-decoration: none;
 
   &:hover {
@@ -86,8 +88,8 @@ h1.title {
 .top-headline-box {
   box-sizing: border-box;
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 0px;
+  right: 0px;
   height: 50vh;
   background-color: $headline-primary;
   text-align: center;
@@ -103,8 +105,7 @@ h1.title {
 
 .search {
   .search-form {
-    margin: 8px;
-    height: 2em;
+    margin: 12px;
     transition: 0.3s;
     outline: none;
     border-radius: 10px;
@@ -115,21 +116,13 @@ h1.title {
       background-color: $shadow2-primary;
       border: 1px solid $shadow2-primary;
     }
+    &::placeholder {
+      color: silver;
+    }
   }
 
   .search-btn {
-    height: 2em;
-    transition: 0.3s;
-    outline: none;
-    border-radius: 10px;
-    background-color: $default-primary;
-     border: 1px solid $default-primary;
-    color: white;
-
-    &:hover {
-      background-color: $shadow2-primary;
-      border: 1px solid $shadow2-primary;
-    }
+    display: none;
   }
 }
 
@@ -197,4 +190,16 @@ h1.title {
 .timeline-headline {
   font-size: 1.2em;
   color: #330033
+}
+
+.item-title {
+  font-size: 3em;
+}
+
+.active {
+  display: block !important;
+}
+
+.non-active {
+  display: none !important;
 }

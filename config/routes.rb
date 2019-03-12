@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post   '/login',  to: 'sessions#create'
   get    '/logout', to: 'sessions#destroy'
   get    '/search', to: 'search#search'
+  get    '/changetab', to: 'static_pages#change_tab'
 
   resources :users, param: :user_id do
     member do

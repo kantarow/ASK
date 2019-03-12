@@ -10,7 +10,7 @@
     <li class="right"><%= link_to "LogIn", login_path %></li>
   <% end %>
   <%= form_with url: "/search", method: "get", local: true, class: "search" do |f| %>
-    <%= f.text_field :q, class: "search-form", value: params[:q], autocomplete: 'off', spellcheck: false %>
+    <%= f.text_field :q, class: "search-form", value: params[:q], autocomplete: 'off', spellcheck: false, placeholder: "search"  %>
     <%= f.submit :search, class: "search-btn" %>
   <% end %>
 </ul>

@@ -1,6 +1,6 @@
-<%= render "layouts/error_messages", model: @item %>
+<%= render "layouts/error_messages", model: item %>
   <div class="editor">
-    <%= form_for(@item) do |f| %>
+    <%= form_for(item) do |f| %>
       <%= f.text_field :title, placeholder: "input Title", class: "title-input" %>
 
       <div class="row" id="editor">

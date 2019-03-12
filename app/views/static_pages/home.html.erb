@@ -4,22 +4,10 @@
     <%= link_to "Sign up", signup_path, class: "accent-button" %>
   </div>
 <% else %>
-  <div class="timeline">
-    <div class="following-users">
-      <h2 class="timeline-headline">Following User</h2>
-      <% current_user.following_users.each do |following| %>
-        <% following.items.each do |item| %>
-          <%= link_to item, class: "item-headline-link" do %>
-            <div class="item-headline">
-              <h5><%= item.title %></h5>
-              <p><%= "by " + following.id_name %></p>
-              <hr>
-            </div>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="following-user">
-    </div>
-  </div>
+  <ul class="timeline-nav">
+    <li><%= link_to "users", '/changetab?tab=users', remote: true %></li>
+    <li><%= link_to "tags", '/changetab?tab=tags', remote: true %></li>
+  </ul>
+
+  <div id="timeline"></div>
 <% end %>

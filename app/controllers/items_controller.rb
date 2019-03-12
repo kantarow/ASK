@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
   helper_method :item
+
   def new
     @item = Item.new
   end
@@ -49,6 +50,12 @@ class ItemsController < ApplicationController
       current_user.like!(item)
       @src = "https://img.icons8.com/material/24/000000/hearts.png".to_json
     end
+  end
+
+  def item
+    return @item if defined? @item
+    user
+    @item = Item.find_by(id: params[:item_id])
   end
 
   private

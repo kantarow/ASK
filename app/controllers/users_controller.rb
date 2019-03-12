@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :require_login, only: [:edit, :update,  :destroy]
+  helper_method :user
+
   def new
     @user = User.new
   end
@@ -50,6 +52,15 @@ class UsersController < ApplicationController
     else
       current_user.follow!(user)
       @message = "Unfollow".to_json
+    end
+  end
+
+  def user
+    if defined? @user
+      return @user
+    else
+      puts "SQL"
+      @user = User.find_by(id_name: params[:user_id])
     end
   end
 
