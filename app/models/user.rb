@@ -41,33 +41,28 @@ class User < ApplicationRecord
     like_relationships.find_by(item_id: item.id).destroy
   end
 
-
-  def following?(other)
-    following_relationships.exists?(following_id: other.id)
+  def add_follower(user)
+    follower_relationships.create!(user: user)
   end
 
-  def followed?(other)
-    follower_relationships.exists?(follower_id: other.id)
+  def followed?(user)
+    follower_relationships.exists?(user_id: user.id)
+  end
+
+  def remove_follower(user)
+    follower_relationships.find_by(user_id: user.id).destroy
+  end
+
+  def following?(other)
+    other.followed?(self)
   end
 
   def follow!(other)
-      self.following_relationships.create!(following: other) unless self.following?(other)
+    other.add_follower(self)
   end
 
   def unfollow!(other)
-    following_relationships.find_by(following_id: other.id).destroy
-  end
-
-  def follow_tag(tag)
-    follow_tag_relationships.create!(tag: tag) unless self.following_tag?(tag)
-  end
-
-  def unfollow_tag(tag)
-    follow_tag_relationships.find_by(tag_id: tag.id).destroy
-  end
-
-  def following_tag?(tag)
-    follow_tag_relationships.exists?(tag_id: tag.id)
+    other.remove_follower(self)
   end
 
   def remember
