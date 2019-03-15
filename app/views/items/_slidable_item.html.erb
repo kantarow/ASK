@@ -1,9 +1,25 @@
 <h1><%= title %></h1>
 <hr>
-<ul class="slide-bar">
+<div id="slide-screen" class="slide-screen"></div>
+<ul class="slide-bar" id="slide-bar">
   <% md2html(content).gsub("<hr />", "<hr>").split("<hr>").each do |page| %>
-    <li class="slide-page">
-      <%= page.html_safe %>
+    <li class="slide-page" id="slide-page">
+      <div>
+        <%= page.html_safe %>
+      </div>
     </li>
   <% end %>
 </ul>
+
+<script>
+  $("#slide-bar li").click(function(event){
+    console.log($(this).css("border"));
+    $("#slide-bar li").css("border", "none");
+    if($(this).css("border").includes("none")){
+      $(this).css("border", "10px solid limegreen");
+    }else{
+      $(this).css("border", "none");
+    }
+    $("#slide-screen").html($(this).html());
+  });
+</script>

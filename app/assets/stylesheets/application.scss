@@ -204,20 +204,34 @@ h1.title {
 }
 
 .slide-bar {
-  height: 70vh;
-  width: 300px;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  margin-top: 30px;
+  height: 160px;
+  width: 100%;
+  overflow: auto;
+  white-space: nowrap;
 }
 
-.slide-page {
-  height: 400px;
-  width:  700px;
+.slide-screen, .slide-page {
+  height: 500px;
+  width:  800px;
   box-shadow: 10px 10px 10px rgba(0,0,0,0.3);
   padding: 30px;
   margin: 20px;
   background-color: white;
   list-style-type: none;
-  line-height: 1.2em;
-  zoom: 30%;
 }
+
+.slide-screen {
+  margin: auto;
+  & h1 {
+    margin-bottom: 1.3em;
+  }
+}
+
+.slide-page {
+  zoom: 25%;
+  display: inline-block;
+  line-height: 0.3px;
+  overflow: hidden;
+}
+
