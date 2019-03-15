@@ -15,7 +15,8 @@ $accent-shade: #05B349;
 body {
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Hiragino Kaku Gothic ProN,"メイリオ",meiryo,sans-serif;
   line-height: 2em;
-  background-color: white;
+  background-color: whitesmoke;
+  color: #111111;
 } 
 
 .container {
@@ -105,6 +106,7 @@ h1.title {
 
 .search {
   .search-form {
+    padding-left: 5px;
     margin: 12px;
     transition: 0.3s;
     outline: none;
@@ -161,16 +163,12 @@ h1.title {
   }
 }
 
-.editor {
-  position: absolute;
-  left: 10vw;
-  right: 10vw;
-}
-
 .item-input, .item-preview {
   background-color: white;
   margin-top: 10px;
-  height: 80vh;
+  padding: 20px;
+  width: 100%;
+  height: 75vh;
   border: 1px solid $shadow-primary;
   font-size: 1.1em;
   outline: none;
@@ -179,6 +177,7 @@ h1.title {
 
 .title-input {
   outline: none;
+  padding: 20px;
   border: 1px solid $shadow-primary;
   margin-top: 10px;
   width: 100%;
@@ -202,4 +201,23 @@ h1.title {
 
 .non-active {
   display: none !important;
+}
+
+.slide-bar {
+  height: 70vh;
+  width: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.slide-page {
+  height: 400px;
+  width:  700px;
+  box-shadow: 10px 10px 10px rgba(0,0,0,0.3);
+  padding: 30px;
+  margin: 20px;
+  background-color: white;
+  list-style-type: none;
+  line-height: 1.2em;
+  zoom: 30%;
 }

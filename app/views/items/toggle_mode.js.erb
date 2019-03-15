@@ -1,0 +1,22 @@
+var visible = "<%= @visible %>"
+var hidden  = "<%= @hidden %>"
+var slidable_check = "<%= @slidable_check %>"
+
+console.log(slidable_check);
+
+$(visible).show();
+$(hidden).hide();
+
+if(visible == "#previewmode"){
+  $("#item-preview").html("");
+  if(slidable_check == "0"){
+    $("#slide-preview").hide();
+    $("#item-preview").show();
+    $("#item-preview").html("<h1>" + <%= raw md2html(@title).to_json %> + "</h1><hr>" + <%= raw md2html(@content).to_json %>);
+  }else{
+    $("#item-preview").hide();
+    $("#slide-preview").show();
+    $("#slide-preview").html(<%= raw render("slidable_item", title: @title, content: @content).to_json %>);
+    console.log($("#slide-preview").html());
+  }
+}

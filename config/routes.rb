@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   post   '/login',  to: 'sessions#create'
   get    '/logout', to: 'sessions#destroy'
   get    '/search', to: 'search#search'
-  get    '/changetab', to: 'static_pages#change_tab'
+  get    '/change_tab', to: 'static_pages#change_tab'
 
   resources :users, param: :user_id do
     member do
@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   resources :items, param: :item_id do
     member do
       get 'like'
+      get 'toggle_mode'
+      get 'change_type'
     end
   end
 end

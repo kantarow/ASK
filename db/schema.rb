@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_12_074625) do
+ActiveRecord::Schema.define(version: 2019_03_13_015621) do
 
   create_table "follow_tag_relationships", force: :cascade do |t|
     t.string "user_id"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2019_03_12_074625) do
     t.string "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "slidable", default: false, null: false
   end
 
   create_table "like_relationships", force: :cascade do |t|

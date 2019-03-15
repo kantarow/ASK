@@ -1,0 +1,19 @@
+<%= render "layouts/error_messages", model: item %>
+<%= form_for item, remote: true do |f| %>
+  <%= f.check_box :slidable, id: "slidable-check" %>
+  <%= f.submit "Edit", remote: true %>
+  <%= f.submit "Preview", remote: true %>
+
+  <div id="editmode">
+    <%= f.text_field :title, placeholder: "input Title", class: "title-input" %>
+    <%= f.text_area :content, class: "item-input" %>
+  </div>
+  <div id="previewmode">
+    <div id="item-preview" class="item-preview"></div>
+    <div id="slide-preview" class="slide-preview"></div>
+  </div>
+  <%= f.submit "Submit", class: "submit-button" %>
+<% end %>
+<script>
+  $("#previewmode").hide();
+</script>

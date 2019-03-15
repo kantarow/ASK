@@ -1,0 +1,9 @@
+<h1><%= title %></h1>
+<hr>
+<ul class="slide-bar">
+  <% md2html(content).gsub("<hr />", "<hr>").split("<hr>").each do |page| %>
+    <li class="slide-page">
+      <%= page.html_safe %>
+    </li>
+  <% end %>
+</ul>

@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  include ApplicationHelper
   before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
   helper_method :item
 
@@ -8,12 +9,13 @@ class ItemsController < ApplicationController
 
   def create
     @item = current_user.items.build(item_params)
-    p @item
-    if @item.save
-      flash[:success] = "Item posted"
-      redirect_to root_url
-    else
-      render 'new'
+    toggle_mode do
+      if @item.save
+        flash[:success] = "Item posted"
+        redirect_to root_url
+      else
+        render 'new'
+      end
     end
   end
 
@@ -24,12 +26,14 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if item.update_attributes(item_params)
-      flash[:success] = "Item updated"
-      redirect_to item_path(@item)
-    else
-      flash[:danger] = "Failed to update"
-      render 'edit'
+    toggle_mode do
+      if item.update_attributes(item_params)
+        flash[:success] = "Item updated"
+        redirect_to item_path(@item)
+      else
+        flash[:danger] = "Failed to update"
+        render 'edit'
+      end
     end
   end
 
@@ -52,16 +56,38 @@ class ItemsController < ApplicationController
     end
   end
 
+  def toggle_mode
+    @title   = params[:item][:title]
+    @content = params[:item][:content]
+    @slidable_check = params[:item][:slidable]
+    case params[:commit]
+    when "Submit"
+      yield
+    when "Edit"
+      @visible = "#editmode"
+      @hidden = "#previewmode"
+      render "toggle_mode"
+    when "Preview"
+      @visible = "#previewmode"
+      @hidden = "#editmode"
+      render "toggle_mode"
+      p md2html(@content)
+    end
+  end
+
+  def change_type
+  end
+
   def item
     return @item if defined? @item
-    user
     @item = Item.find_by(id: params[:item_id])
   end
 
+
   private
 
-    def item_params
-      params.require(:item).permit(:title, :content)
-    end
+  def item_params
+    params.require(:item).permit(:title, :content)
+  end
 
 end

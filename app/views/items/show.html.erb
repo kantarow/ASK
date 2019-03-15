@@ -1,8 +1,10 @@
 <h1 class="item-title"><%= item.title %></h1>
+<%= link_to("Edit", edit_item_path(item), class: "btn btn-outline-dark") if item.user == current_user %>
+<br>
 <%= item.user.screen_name %>
 <p><img src="https://img.icons8.com/material-outlined/15/000000/hearts.png"> <%= item.liked_users.length %></p>
 <hr>
-<%= md2html item.content %><br>
+<%= raw md2html item.content %><br>
 <hr>
 <br>
 <% if logged_in? %>
