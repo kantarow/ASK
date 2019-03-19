@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_login, only: [:edit, :update,  :destroy]
+  before_action :user_exists?,  only: [:show, :edit ]
   helper_method :user
 
   def new
@@ -61,6 +62,13 @@ class UsersController < ApplicationController
     else
       puts "SQL"
       @user = User.find_by(id_name: params[:user_id])
+    end
+  end
+
+  def user_exists?
+    unless user
+      flash[:danger] = "User not found"
+      redirect_to root_url
     end
   end
 

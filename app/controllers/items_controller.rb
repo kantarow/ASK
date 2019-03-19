@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   include ApplicationHelper
   before_action :require_login, only: [:new, :create, :edit, :update, :destroy]
+  before_action :item_exists?,   only: [:show, :edit ]
   helper_method :item
 
   def new
@@ -47,6 +48,7 @@ class ItemsController < ApplicationController
   end
 
   def like
+    p params[:test]
     if current_user.like?(item)
       current_user.unlike!(item)
       @src = "https://img.icons8.com/material-outlined/24/000000/hearts.png".to_json
@@ -81,6 +83,13 @@ class ItemsController < ApplicationController
   def item
     return @item if defined? @item
     @item = Item.find_by(id: params[:item_id])
+  end
+
+  def item_exists?
+    unless item
+      flash[:danger] = "Item not found"
+      redirect_to root_url
+    end
   end
 
 
