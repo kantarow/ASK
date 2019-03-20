@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_015621) do
+ActiveRecord::Schema.define(version: 2019_03_20_014523) do
 
   create_table "follow_tag_relationships", force: :cascade do |t|
     t.string "user_id"
@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 2019_03_13_015621) do
     t.datetime "updated_at", null: false
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
     t.index ["following_id"], name: "index_relationships_on_following_id"
-    t.index [nil, nil], name: "index_relationships_on_following_and_follower", unique: true
   end
 
   create_table "tags", force: :cascade do |t|

@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   self.primary_key = :id_name
-  has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship", dependent: :destroy
+  has_many :following_relationships, class_name: "Relationship", dependent: :destroy, foreign_key: "follower_id"
   has_many :following_users, through: :following_relationships, source: 'following'
-  has_many :follower_relationships, foreign_key: "following_id", class_name: "Relationship", dependent: :destroy
+  has_many :follower_relationships, class_name: "Relationship", dependent: :destroy, foreign_key: "following_id"
   has_many :followers, through: :follower_relationships
   has_many :follow_tag_relationships, dependent: :destroy
   has_many :following_tags, through: :follow_tag_relationships, source: :tag
@@ -42,15 +42,15 @@ class User < ApplicationRecord
   end
 
   def add_follower(user)
-    follower_relationships.create!(user: user)
+    follower_relationships.create!(follower_id: user.id)
   end
 
   def followed?(user)
-    follower_relationships.exists?(user_id: user.id)
+    follower_relationships.exists?(follower_id: user.id)
   end
 
   def remove_follower(user)
-    follower_relationships.find_by(user_id: user.id).destroy
+    follower_relationships.find_by(follower_id: user.id).destroy
   end
 
   def following?(other)

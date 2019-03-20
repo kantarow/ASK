@@ -235,3 +235,33 @@ h1.title {
   overflow: hidden;
 }
 
+
+.timeline-nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  li {
+    float: left;
+    a {
+      transition: 0.5s;
+      color: black;
+      font-size: 1.2em;
+      display: block;
+      margin: 3px;
+      text-align: center;
+      padding: 8px 16px;
+      text-decoration: none;
+    }
+  }
+}
+
+.active-tab {
+  border-bottom: solid;
+  border-color: mediumaquamarine;
+}
+
+.non-active-tab {
+  border-bottom: solid;
+  border-color: thistle;
+}

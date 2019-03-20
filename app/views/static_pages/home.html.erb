@@ -5,9 +5,33 @@
   </div>
 <% else %>
   <ul class="timeline-nav">
-    <li><%= link_to "users", '/change_tab?tab=users', remote: true %></li>
-    <li><%= link_to "tags", '/change_tab?tab=tags', remote: true %></li>
+    <li><%= link_to "users", '/change_tab?tab=users', remote: true, id: "user", class: "active-tab" %></li>
+    <li><%= link_to "tags", '/change_tab?tab=tags', remote: true, id: "tag", class: "non-active-tab" %></li>
   </ul>
 
-  <div id="timeline"></div>
+  <div id="timeline">
+    <%= render "following_users" %>
+  </div>
 <% end %>
+
+<script>
+  $(".timeline-nav li a").on("click", function() {
+    var id = $(this).attr("id")
+    var other_id;
+    switch (id) {
+      case "user":
+        other_id = "#tag";
+        break;
+      case "tag":
+        other_id = "#user";
+    }
+    console.log(id);
+
+    if($(this).hasClass("non-active-tab")) {
+      $(this).addClass("active-tab");
+      $(this).removeClass("non-active-tab");
+      $(other_id).addClass("non-active-tab")
+      $(other_id).removeClass("active-tab")
+    }
+  })
+</script>
